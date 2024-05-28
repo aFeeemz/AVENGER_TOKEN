@@ -13,7 +13,7 @@ func AuthMiddleware(next httprouter.Handle) httprouter.Handle {
 		tokenString := r.Header.Get("Authorization")
 
 		if tokenString == "" {
-			http.Error(w, "Unoauthorized", http.StatusUnauthorized)
+			http.Error(w, "Unoauthorized : Token Empty", http.StatusUnauthorized)
 			return
 		}
 
@@ -22,11 +22,11 @@ func AuthMiddleware(next httprouter.Handle) httprouter.Handle {
 			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 				return nil, http.ErrAbortHandler
 			}
-			return []byte("your_secret_key"), nil
+			return []byte("kue_apeeeemz"), nil
 		})
 
 		if err != nil || !token.Valid {
-			http.Error(w, "Unauthorized", http.StatusUnauthorized)
+			http.Error(w, "Unauthorized : Token Invalid", http.StatusUnauthorized)
 			return
 		}
 

@@ -3,6 +3,7 @@ package main
 import (
 	"NGC_AVENGER/config"
 	"NGC_AVENGER/handlers"
+	"NGC_AVENGER/middleware"
 	"log"
 	"net/http"
 
@@ -22,6 +23,7 @@ func main() {
 
 	router.POST("/register", handlers.Register)
 	router.POST("/login", handlers.Login)
+	router.GET("/recipe", middleware.AuthMiddleware(handlers.GetAllRecipe))
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 

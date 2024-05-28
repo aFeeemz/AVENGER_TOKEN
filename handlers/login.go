@@ -12,10 +12,9 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/crypto/bcrypt"
-	// "github.com/golang-jwt/jwt/v4"
 )
 
-var jwtKey = []byte("your_secret_key")
+var jwtKey = []byte("kue_apeeeemz")
 
 func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var input models.User //Containing the login email
